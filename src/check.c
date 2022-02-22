@@ -2,33 +2,29 @@
 
 void	check_sim(char **split)
 {
-	int i;
-	int j;
-	char	*s;
+	int		i;
+	int		j;
+	int k1;
+	int k2;
 
 	i = -1;
 	while (split[++i])
 	{
-		s = ft_strdup(split[i]);
 		j = i;
 		while (split[++j])
 		{
-			if (!ft_strncmp(split[i], split[j], ft_strlen(split[i])))
-			{
-				free(s);
-				s = NULL;
+			k1 = ft_atoi(split[i]);
+			k2 = ft_atoi(split[j]);
+			if (k1 == k2)
 				ft_error("Error: similar values");
-			}
 		}
-		free(s);
-		s = NULL;
 	}
 }
 
 void	check_numb(char	**split)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = -1;
 	while (split[++i])
@@ -36,8 +32,10 @@ void	check_numb(char	**split)
 		j = -1;
 		while (split[i][++j])
 		{
-			if (!ft_isdigit(split[i][j]) && (((split[i][j] == '-')
-			|| split[i][j] == '+') && !ft_isdigit(split[i][j + 1])))
+			if (((split[i][j] == '-')
+				|| split[i][j] == '+') && ft_isdigit(split[i][j + 1]))
+				continue ;
+			else if (!ft_isdigit(split[i][j]))
 				ft_error("Error: values incorrect");
 		}
 	}

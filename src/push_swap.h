@@ -37,5 +37,15 @@ void	rr_stack(t_stk **top);
 void	swap_stack(t_stk **top);
 t_stk	*bottom(t_stk *top);
 int		min_stk(t_stk *top);
+int		max_stk(t_stk *top);
 int		index_stk(t_stk *top, int n);
+int		ft_round(float m);
+t_stk	*copy_stk(t_stk *top);
+int		node_stk(t_stk **top, int idx);
+int		select_num(t_stk *a);
+int		check_low_val(t_stk *top, int val);
+int		check_eq_val(t_stk *top, int val);
+void	lift_node_a(t_stk **a, t_stk **b, t_ps *ps, int m);
+void	lift_node_b(t_stk **a, t_stk **b, t_ps *ps, int max);
+void	sort_mid(t_stk **a, t_stk **b, t_ps *ps);
 #endif

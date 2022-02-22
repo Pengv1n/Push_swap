@@ -55,7 +55,8 @@ void	push_swap(t_ps *ps, int argc, char **argv)
 	ps->len = size_stk(ps->a);
 	if (ps->len <= 10)
 		sort_10(&(ps->a), &(ps->b), ps);
-
+	else if (ps->len > 10 && ps->len < 200)
+		sort_mid(&(ps->a), &(ps->b), ps);
 	free_stk(&ps->a);
 }
 

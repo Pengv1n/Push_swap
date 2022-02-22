@@ -1,89 +1,88 @@
 #include "push_swap.h"
 
-void	min_to_top(t_stk **a, t_stk **b, t_ps *ps, int min)
-{
-	int	idx;
-	int mid;
-
-	idx = index_stk((*a), min);
-	mid = (size_stk(*a)) / 2;
-	if (mid > idx)
-		case_123(a, b, 2, ps);
-	else
-		case_123(a, b, 3, ps);
-}
-
-void	sort_more3(t_stk **a, t_stk **b, t_ps *ps)
+void	mid1(t_stk **a, t_stk **b, int len, t_ps *ps)
 {
 	int	len_;
-	int min;
-	t_stk	*t;
+	int m;
+	t_stk	*sort_list;
 
-	len_ = ps->len;
-	while (len_ > 3)
+	len_ = ft_round(len / 4);
+	while (len >= len_)
+	{
+		sort_list = copy_stk(*a);
+		m = select_num(sort_list);
+		while (check_low_val(*a, m))
+		{
+			if ((*a)->value <= m)
+			{
+				case_123(a, b, 1, ps);
+				len--;
+			}
+			else
+				lift_node_a(a, b, ps ,m);
+		}
+		free_stk(&sort_list);
+	}
+}
+
+void	mid2(t_stk **a, t_stk **b, t_ps *ps)
+{
+	int	min;
+	t_stk	*tmp;
+
+	while (*a && !check_sort_stk(*a))
 	{
 		min = min_stk(*a);
-		t = (*a)->next;
-		if ((*a)->value != min && t && t->value == min)
+		tmp = (*a)->next;
+		if	((*a)->value != min && tmp && tmp->value == min)
 			case_123(a, b, 8, ps);
-		while ((*a)->value != min)
-			min_to_top(a, b, ps, min);
-		case_123(a, b ,1, ps);
-		len_--;
-	}
-}
-
-void	sort_3(t_stk **a, t_stk **b, t_ps *ps)
-{
-	t_stk	*bott;
-	int min;
-
-	bott = bottom(*a);
-	min = min_stk(*a);
-	while (!check_sort_stk(*a))
-	{
-		if ((*a)->value < (*a)->next->value && bott->value == min)
-			case_123(a,b, 3, ps);
-		else if ((*a)->value > (*a)->next->value && bott->value == min)
+		while (size_stk(*a) && check_low_val(*a, min))
 		{
-			case_123(a, b, 8, ps);
-			case_123(a, b, 3, ps);
-		}
-		else if ((*a)->next->value == min)
-		{
-			if ((*a)->value < bott->value)
-				case_123(a, b, 8, ps);
+			if ((*a)->value == min)
+			{
+				tmp = *a;
+				case_123(a, b, 1, ps);
+				free(tmp);
+			}
 			else
-				case_123(a, b, 2, ps);
-		}
-		else if ((*a)->value == min)
-		{
-			case_123(a, b, 8, ps);
-			case_123(a, b, 2, ps);
+				lift_node_a(a, b, ps, min);
 		}
 	}
 }
 
-void	sort_10(t_stk **a, t_stk **b, t_ps *ps)
+void	mid3(t_stk **a, t_stk **b, t_ps *ps)
 {
-	if (ps->len == 2 && (*a)->value > (*a)->next->value)
-		case_123(a, b, 8, ps);
-	if (ps->len == 3)
-		sort_3(a, b, ps);
-	if (ps->len > 3)
+	t_stk	*tmp;
+	int	max;
+
+	tmp = NULL;
+	while (*b)
 	{
-		sort_more3(a, b, ps);
-		sort_3(a, b, ps);
-		while (*b)
-			case_123(a, b, 4, ps);
-		free_stk(b);
+		max = max_stk(*b);
+		while (check_eq_val((*b), max))
+		{
+			max = max_stk(*b);
+			tmp = (*b)->next;
+			if ((*b)->value != max && tmp && tmp->value == max)
+				case_123(a, b, 7, ps);
+			while ((*b)->value != max)
+				lift_node_b(a, b, ps, max);
+			while (*b && (*b)->value == max)
+			{
+				tmp = *b;
+				case_123(a, b, 4, ps);
+				max = max_stk(*b);
+				free(tmp);
+			}
+		}
 	}
-	t_stk *tmp;
-	tmp = *a;
-	while (tmp)
-	{
-		printf("%d\n", tmp->value);
-		tmp = tmp->next;
-	}
+}
+
+void	sort_mid(t_stk **a, t_stk **b, t_ps *ps)
+{
+	mid1(a, b, ps->len, ps);
+	mid2(a, b, ps);
+	mid3(a, b, ps);
 	free_stk(a);
+	free_stk(b);
 }
