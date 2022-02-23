@@ -28,7 +28,9 @@ void	sort_more3(t_stk **a, t_stk **b, t_ps *ps)
 			case_123(a, b, 8, ps);
 		while ((*a)->value != min)
 			min_to_top(a, b, ps, min);
+		t = *a;
 		case_123(a, b ,1, ps);
+		free(t);
 		len_--;
 	}
 }
@@ -66,24 +68,24 @@ void	sort_3(t_stk **a, t_stk **b, t_ps *ps)
 
 void	sort_10(t_stk **a, t_stk **b, t_ps *ps)
 {
+	t_stk *tmp;
+
+	tmp = NULL;
 	if (ps->len == 2 && (*a)->value > (*a)->next->value)
 		case_123(a, b, 8, ps);
-	if (ps->len == 3)
+	if (ps->len <= 3)
 		sort_3(a, b, ps);
 	if (ps->len > 3)
 	{
 		sort_more3(a, b, ps);
 		sort_3(a, b, ps);
 		while (*b)
+		{
+			tmp = *b;
 			case_123(a, b, 4, ps);
+			free(tmp);
+		}
 		free_stk(b);
-	}
-	t_stk *tmp;
-	tmp = *a;
-	while (tmp)
-	{
-		printf("%d\n", tmp->value);
-		tmp = tmp->next;
 	}
 	free_stk(a);
 }

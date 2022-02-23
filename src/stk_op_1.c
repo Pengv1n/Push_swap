@@ -46,7 +46,7 @@ int	check_sort_stk(t_stk *stk)
 	return (1);
 }
 
-void	add_front(t_stk **top, t_stk * new)
+void	add_front(t_stk **top, t_stk *new)
 {
 	new->next = *top;
 	new->prev = NULL;

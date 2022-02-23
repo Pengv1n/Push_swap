@@ -48,16 +48,14 @@ void	push_swap(t_ps *ps, int argc, char **argv)
 	check_sim(ps->split);
 	fill_stk(ps, ps->split, new);
 	if (check_sort_stk(ps->a))
-	{
-		printf("OK\n");
 		exit(EXIT_SUCCESS);
-	}
 	ps->len = size_stk(ps->a);
 	if (ps->len <= 10)
 		sort_10(&(ps->a), &(ps->b), ps);
-	else if (ps->len > 10 && ps->len < 200)
+	else if (ps->len < 200)
 		sort_mid(&(ps->a), &(ps->b), ps);
-	free_stk(&ps->a);
+	else
+		sort_big(&(ps->a), &(ps->b), ps);
 }
 
 int main(int argc, char **argv)

@@ -92,7 +92,7 @@ int	select_num(t_stk *a)
 	tmp = sort_stk(a);
 	if (len <= 12)
 		m = ft_round(len / 2);
-	else if (len > 12 && len < 200)
+	else if (len < 200)
 		m = ft_round(len / 4);
 	else if (len >= 200)
 		m = ft_round(len / 8);

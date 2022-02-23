@@ -41,15 +41,19 @@ int	max_stk(t_stk *top)
 	t_stk *tmp;
 	int	max;
 
-	tmp = top;
-	max = top->value;
-	while (tmp)
+	if (top)
 	{
-		if (max < tmp->value)
-			max = tmp->value;
-		tmp = tmp->next;
+		tmp = top;
+		max = top->value;
+		while (tmp)
+		{
+			if (max < tmp->value)
+				max = tmp->value;
+			tmp = tmp->next;
+		}
+		return (max);
 	}
-	return (max);
+	return (0);
 }
 
 int	check_eq_val(t_stk *top, int val)

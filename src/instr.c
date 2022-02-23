@@ -4,7 +4,16 @@ void	push_stack(t_stk **a, t_stk **b, t_stk *new)
 {
 	new = NULL;
 
-	if (*a)
+	if (!(*b) && *a)
+	{
+		*b = (t_stk *)malloc(sizeof(t_stk));
+		(*b)->prev = NULL;
+		(*b)->value = (*a)->value;
+		(*b)->next = NULL;
+		(*a) = (*a)->next;
+		(*a)->prev = NULL;
+	}
+	else if (*a)
 	{
 		new = (t_stk *)malloc(sizeof(t_stk));
 		new->value = (*a)->value;

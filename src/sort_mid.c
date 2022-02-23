@@ -1,21 +1,26 @@
 #include "push_swap.h"
 
+#include "stdio.h"
+
 void	mid1(t_stk **a, t_stk **b, int len, t_ps *ps)
 {
 	int	len_;
 	int m;
 	t_stk	*sort_list;
+	t_stk	*tmp;
 
 	len_ = ft_round(len / 4);
 	while (len >= len_)
 	{
 		sort_list = copy_stk(*a);
 		m = select_num(sort_list);
-		while (check_low_val(*a, m))
+		while (check_low_val(*a, m) && (*a))
 		{
 			if ((*a)->value <= m)
 			{
+				tmp = *a;
 				case_123(a, b, 1, ps);
+				free(tmp);
 				len--;
 			}
 			else
@@ -56,24 +61,21 @@ void	mid3(t_stk **a, t_stk **b, t_ps *ps)
 	int	max;
 
 	tmp = NULL;
-	while (*b)
+	max = max_stk(*b);
+	while (check_eq_val((*b), max) && *b)
 	{
 		max = max_stk(*b);
-		while (check_eq_val((*b), max))
+		tmp = (*b)->next;
+		if ((*b)->value != max && tmp && tmp->value == max)
+			case_123(a, b, 7, ps);
+		while ((*b)->value != max && *b)
+			lift_node_b(a, b, ps, max);
+		while (*b && (*b)->value == max)
 		{
+			tmp = *b;
+			case_123(a, b, 4, ps);
 			max = max_stk(*b);
-			tmp = (*b)->next;
-			if ((*b)->value != max && tmp && tmp->value == max)
-				case_123(a, b, 7, ps);
-			while ((*b)->value != max)
-				lift_node_b(a, b, ps, max);
-			while (*b && (*b)->value == max)
-			{
-				tmp = *b;
-				case_123(a, b, 4, ps);
-				max = max_stk(*b);
-				free(tmp);
-			}
+			free(tmp);
 		}
 	}
 }

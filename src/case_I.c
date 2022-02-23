@@ -29,11 +29,13 @@ void	case_456(t_stk **a, t_stk **b, int code, t_ps *ps)
 	{
 		ft_putstr_fd("rb\n", 1);
 		r_stack(b);
+		free(tmp);
 	}
 	if (code == 6 && (*b)->next)
 	{
 		ft_putstr_fd("rrb\n", 1);
 		rr_stack(b);
+		free(tmp);
 	}
 	else
 		case_78(a, b , code, ps);
