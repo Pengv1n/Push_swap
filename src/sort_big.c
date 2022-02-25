@@ -1,18 +1,20 @@
 #include "push_swap.h"
 
-void    big1(t_stk **a, t_stk **b, int len, t_ps *ps)
+#include "stdio.h"
+
+void	mid1(t_stk **a, t_stk **b, int len, t_ps *ps, int p)
 {
-    int	len_;
+	int	len_;
 	int m;
 	t_stk	*sort_list;
 	t_stk	*tmp;
 
-	len_ = ft_round(len / 8);
-	while (len >= len_)
+    len_ = ft_round(len / p);
+    while (len >= len_)
 	{
 		sort_list = copy_stk(*a);
 		m = select_num(sort_list);
-		while (check_low_val(*a, m))
+		while (check_low_val(*a, m) && (*a))
 		{
 			if ((*a)->value <= m)
 			{
@@ -28,9 +30,9 @@ void    big1(t_stk **a, t_stk **b, int len, t_ps *ps)
 	}
 }
 
-void    big2(t_stk **a, t_stk **b, t_ps *ps)
+void	mid2(t_stk **a, t_stk **b, t_ps *ps)
 {
-    int	min;
+	int	min;
 	t_stk	*tmp;
 
 	while (*a && !check_sort_stk(*a))
@@ -53,9 +55,9 @@ void    big2(t_stk **a, t_stk **b, t_ps *ps)
 	}
 }
 
-void    big3(t_stk **a, t_stk **b, t_ps *ps)
+void	mid3(t_stk **a, t_stk **b, t_ps *ps)
 {
-    t_stk	*tmp;
+	t_stk	*tmp;
 	int	max;
 
 	tmp = NULL;
@@ -66,7 +68,7 @@ void    big3(t_stk **a, t_stk **b, t_ps *ps)
 		tmp = (*b)->next;
 		if ((*b)->value != max && tmp && tmp->value == max)
 			case_123(a, b, 7, ps);
-		while ((*b)->value != max)
+		while ((*b)->value != max && *b)
 			lift_node_b(a, b, ps, max);
 		while (*b && (*b)->value == max)
 		{
@@ -78,11 +80,14 @@ void    big3(t_stk **a, t_stk **b, t_ps *ps)
 	}
 }
 
-void    sort_big(t_stk **a, t_stk **b, t_ps *ps)
+void	sort_big(t_stk **a, t_stk **b, t_ps *ps)
 {
-    big1(a, b, ps->len, ps);
-    big2(a, b, ps);
-    big3(a, b, ps);
+    if (ps->len <= 200)
+        mid1(a, b, ps->len, ps, 4);
+    else
+        mid1(a, b, ps->len, ps, 8);
+    mid2(a, b, ps);
+    mid3(a, b, ps);
     free_stk(a);
-    free_stk(b);
+	free_stk(b);
 }

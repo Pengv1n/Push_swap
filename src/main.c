@@ -73,8 +73,6 @@ void	push_swap(t_ps *ps, int argc, char **argv)
 	ps->len = size_stk(ps->a);
 	if (ps->len <= 10)
 		sort_10(&(ps->a), &(ps->b), ps);
-	else if (ps->len < 200)
-		sort_mid(&(ps->a), &(ps->b), ps);
 	else
 		sort_big(&(ps->a), &(ps->b), ps);
 }
