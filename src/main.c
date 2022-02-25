@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-void	fill_stk(t_ps *ps, char **s, t_stk *new)
+void	fill_stk(t_ps *ps, char **s, t_stk *new, int argc)
 {
 	int i;
 
@@ -21,6 +21,8 @@ void	fill_stk(t_ps *ps, char **s, t_stk *new)
 		add_back(&ps->a, new);
 		new = NULL;
 	}
+    if (argc == 2 || ps->fd != 1)
+        free_split(ps->split);
 }
 
 t_ps	*init_stk(t_ps *ps)
@@ -32,7 +34,29 @@ t_ps	*init_stk(t_ps *ps)
 	ps->b = NULL;
 	ps->split = NULL;
 	ps->len = 0;
+    ps->fd = 1;
 	return (ps);
+}
+
+void    choice_input(t_ps *ps, int argc, char **argv)
+{
+    char    *line;
+
+    if (!ft_strncmp(argv[1], "-f", ft_strlen(argv[1])))
+    {
+        ps->fd = open(argv[2], O_RDONLY);
+        line = get_next_line(ps->fd);
+        ps->split = ft_split(line, ' ');
+        free(line);
+        close(ps->fd);
+    }
+    else
+    {
+        if (argc == 2)
+            ps->split = ft_split(argv[1], ' ');
+        else
+            ps->split = &argv[1];
+    }
 }
 
 void	push_swap(t_ps *ps, int argc, char **argv)
@@ -40,13 +64,10 @@ void	push_swap(t_ps *ps, int argc, char **argv)
 	t_stk	*new;
 
 	new = NULL;
-	if (argc == 2)
-		ps->split = ft_split(argv[1], ' ');
-	else
-		ps->split = &argv[1];
+    choice_input(ps, argc, argv);
 	check_numb(ps->split);
 	check_sim(ps->split);
-	fill_stk(ps, ps->split, new);
+	fill_stk(ps, ps->split, new, argc);
 	if (check_sort_stk(ps->a))
 		exit(EXIT_SUCCESS);
 	ps->len = size_stk(ps->a);

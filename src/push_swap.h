@@ -2,6 +2,8 @@
 #define PUSH_SWAP_H
 
 #include "../libft/libft.h"
+#include "../get_next_line/get_next_line.h"
+#include "fcntl.h"
 
 typedef struct s_stack
 {
@@ -16,6 +18,7 @@ typedef struct s_ps
 	t_stk *b;
 	char **split;
 	int	len;
+    int fd;
 } t_ps;
 
 void	ft_error(char *str);
@@ -46,4 +49,5 @@ void	lift_node_a(t_stk **a, t_stk **b, t_ps *ps, int m);
 void	lift_node_b(t_stk **a, t_stk **b, t_ps *ps, int max);
 void	sort_mid(t_stk **a, t_stk **b, t_ps *ps);
 void    sort_big(t_stk **a, t_stk **b, t_ps *ps);
+void    free_split(char **split);
 #endif

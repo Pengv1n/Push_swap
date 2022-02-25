@@ -2,7 +2,7 @@ test:= 87751 49348 54706 48440 50897 74686 12252 73279 71311 78386 30822 82246 2
 
 all:
 	gcc src/*.c libft/*.c -o push_swap
-	make -C Push_Swap_42/ re
+	#make -C Push_Swap_42/ re
 	./push_swap $(test) > my
-	./Push_Swap_42/push_swap $(test) > done
+	#./Push_Swap_42/push_swap $(test) > done
 	
