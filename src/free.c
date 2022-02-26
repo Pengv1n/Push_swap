@@ -2,7 +2,7 @@
 
 void	free_stk(t_stk **stk)
 {
-	t_stk *tmp;
+	t_stk	*tmp;
 
 	while (*stk)
 	{
@@ -13,12 +13,12 @@ void	free_stk(t_stk **stk)
 	}
 }
 
-void    free_split(char **split)
+void	free_split(char **split)
 {
-    int i;
+	int	i;
 
-    i = -1;
-    while (split[++i])
-        free(split[i]);
-    free(split);
+	i = -1;
+	while (split[++i])
+		free(split[i]);
+	free(split);
 }

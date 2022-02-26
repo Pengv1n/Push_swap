@@ -2,15 +2,16 @@
 
 #include "stdio.h"
 
-void	mid1(t_stk **a, t_stk **b, int len, t_ps *ps, int p)
+void	mid1(t_stk **a, t_stk **b, int len, t_ps *ps)
 {
-	int	len_;
-	int m;
+	int		len_;
+	int		m;
 	t_stk	*sort_list;
 	t_stk	*tmp;
 
-    len_ = ft_round(len / p);
-    while (len >= len_)
+	(len_ <= 200) && (len_ = ft_round(len / 4));
+	(len_ > 200) && (len_ = ft_round(len / 8));
+	while (len >= len_)
 	{
 		sort_list = copy_stk(*a);
 		m = select_num(sort_list);
@@ -24,7 +25,7 @@ void	mid1(t_stk **a, t_stk **b, int len, t_ps *ps, int p)
 				len--;
 			}
 			else
-				lift_node_a(a, b, ps ,m);
+				lift_node_a(a, b, ps, m);
 		}
 		free_stk(&sort_list);
 	}
@@ -32,14 +33,14 @@ void	mid1(t_stk **a, t_stk **b, int len, t_ps *ps, int p)
 
 void	mid2(t_stk **a, t_stk **b, t_ps *ps)
 {
-	int	min;
+	int		min;
 	t_stk	*tmp;
 
 	while (*a && !check_sort_stk(*a))
 	{
 		min = min_stk(*a);
 		tmp = (*a)->next;
-		if	((*a)->value != min && tmp && tmp->value == min)
+		if ((*a)->value != min && tmp && tmp->value == min)
 			case_123(a, b, 8, ps);
 		while (size_stk(*a) && check_low_val(*a, min))
 		{
@@ -58,7 +59,7 @@ void	mid2(t_stk **a, t_stk **b, t_ps *ps)
 void	mid3(t_stk **a, t_stk **b, t_ps *ps)
 {
 	t_stk	*tmp;
-	int	max;
+	int		max;
 
 	tmp = NULL;
 	max = max_stk(*b);
@@ -82,12 +83,12 @@ void	mid3(t_stk **a, t_stk **b, t_ps *ps)
 
 void	sort_big(t_stk **a, t_stk **b, t_ps *ps)
 {
-    if (ps->len <= 200)
-        mid1(a, b, ps->len, ps, 4);
-    else
-        mid1(a, b, ps->len, ps, 8);
-    mid2(a, b, ps);
-    mid3(a, b, ps);
-    free_stk(a);
+	if (ps->len <= 200)
+		mid1(a, b, ps->len, ps);
+	else
+		mid1(a, b, ps->len, ps);
+	mid2(a, b, ps);
+	mid3(a, b, ps);
+	free_stk(a);
 	free_stk(b);
 }

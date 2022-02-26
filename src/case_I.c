@@ -38,12 +38,12 @@ void	case_456(t_stk **a, t_stk **b, int code, t_ps *ps)
 		free(tmp);
 	}
 	else
-		case_78(a, b , code, ps);
+		case_78(a, b, code, ps);
 }
 
 void	case_123(t_stk **a, t_stk **b, int code, t_ps *ps)
 {
-	t_stk *tmp;
+	t_stk	*tmp;
 
 	tmp = NULL;
 	if (code == 1)

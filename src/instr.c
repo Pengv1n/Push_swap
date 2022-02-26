@@ -3,7 +3,6 @@
 void	push_stack(t_stk **a, t_stk **b, t_stk *new)
 {
 	new = NULL;
-
 	if (!(*b) && *a)
 	{
 		*b = (t_stk *)malloc(sizeof(t_stk));

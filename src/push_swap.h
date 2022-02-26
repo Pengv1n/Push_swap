@@ -1,25 +1,25 @@
 #ifndef PUSH_SWAP_H
-#define PUSH_SWAP_H
+# define PUSH_SWAP_H
 
-#include "../libft/libft.h"
-#include "../get_next_line/get_next_line.h"
-#include "fcntl.h"
+# include "../libft/libft.h"
+# include "../get_next_line/get_next_line.h"
+# include "fcntl.h"
 
 typedef struct s_stack
 {
-	int	value;
+	int				value;
 	struct s_stack	*prev;
 	struct s_stack	*next;
-} t_stk;
+}	t_stk;
 
 typedef struct s_ps
 {
-	t_stk *a;
-	t_stk *b;
-	char **split;
-	int	len;
-    int fd;
-} t_ps;
+	t_stk	*a;
+	t_stk	*b;
+	char	**split;
+	int		len;
+	int		fd;
+}	t_ps;
 
 void	ft_error(char *str);
 void	check_sim(char **split);
@@ -28,7 +28,7 @@ void	add_back(t_stk **top, t_stk *new);
 void	free_stk(t_stk **stk);
 int		size_stk(t_stk *stk);
 int		check_sort_stk(t_stk *stk);
-void	add_front(t_stk **top, t_stk * new);
+void	add_front(t_stk **top, t_stk *new);
 void	push_stack(t_stk **a, t_stk **b, t_stk *new);
 void	case_123(t_stk **a, t_stk **b, int code, t_ps *ps);
 void	r_stack(t_stk **top);
@@ -48,5 +48,5 @@ int		check_eq_val(t_stk *top, int val);
 void	lift_node_a(t_stk **a, t_stk **b, t_ps *ps, int m);
 void	lift_node_b(t_stk **a, t_stk **b, t_ps *ps, int max);
 void	sort_big(t_stk **a, t_stk **b, t_ps *ps);
-void    free_split(char **split);
+void	free_split(char **split);
 #endif

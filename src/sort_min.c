@@ -3,7 +3,7 @@
 void	min_to_top(t_stk **a, t_stk **b, t_ps *ps, int min)
 {
 	int	idx;
-	int mid;
+	int	mid;
 
 	idx = index_stk((*a), min);
 	mid = (size_stk(*a)) / 2;
@@ -15,8 +15,8 @@ void	min_to_top(t_stk **a, t_stk **b, t_ps *ps, int min)
 
 void	sort_more3(t_stk **a, t_stk **b, t_ps *ps)
 {
-	int	len_;
-	int min;
+	int		len_;
+	int		min;
 	t_stk	*t;
 
 	len_ = ps->len;
@@ -29,28 +29,31 @@ void	sort_more3(t_stk **a, t_stk **b, t_ps *ps)
 		while ((*a)->value != min)
 			min_to_top(a, b, ps, min);
 		t = *a;
-		case_123(a, b ,1, ps);
+		case_123(a, b, 1, ps);
 		free(t);
 		len_--;
 	}
 }
 
+void	sort_3_i83_i82(t_stk **a, t_stk **b, int code, t_ps *ps)
+{
+	case_123(a, b, 8, ps);
+	case_123(a, b, code, ps);
+}
+
 void	sort_3(t_stk **a, t_stk **b, t_ps *ps)
 {
 	t_stk	*bott;
-	int min;
+	int		min;
 
 	bott = bottom(*a);
 	min = min_stk(*a);
 	while (!check_sort_stk(*a))
 	{
 		if ((*a)->value < (*a)->next->value && bott->value == min)
-			case_123(a,b, 3, ps);
-		else if ((*a)->value > (*a)->next->value && bott->value == min)
-		{
-			case_123(a, b, 8, ps);
 			case_123(a, b, 3, ps);
-		}
+		else if ((*a)->value > (*a)->next->value && bott->value == min)
+			sort_3_i83_i82(a, b, 3, ps);
 		else if ((*a)->next->value == min)
 		{
 			if ((*a)->value < bott->value)
@@ -59,16 +62,13 @@ void	sort_3(t_stk **a, t_stk **b, t_ps *ps)
 				case_123(a, b, 2, ps);
 		}
 		else if ((*a)->value == min)
-		{
-			case_123(a, b, 8, ps);
-			case_123(a, b, 2, ps);
-		}
+			sort_3_i83_i82(a, b, 2, ps);
 	}
 }
 
 void	sort_10(t_stk **a, t_stk **b, t_ps *ps)
 {
-	t_stk *tmp;
+	t_stk	*tmp;
 
 	tmp = NULL;
 	if (ps->len == 2 && (*a)->value > (*a)->next->value)

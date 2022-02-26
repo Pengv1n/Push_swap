@@ -18,12 +18,12 @@ void	add_back(t_stk **top, t_stk *new)
 
 int	size_stk(t_stk *stk)
 {
-	int	i;
+	int		i;
 	t_stk	*tmp;
 
 	tmp = stk;
 	i = 0;
-	while(tmp)
+	while (tmp)
 	{
 		++i;
 		tmp = tmp->next;
@@ -33,7 +33,7 @@ int	size_stk(t_stk *stk)
 
 int	check_sort_stk(t_stk *stk)
 {
-	t_stk *tmp;
+	t_stk	*tmp;
 
 	tmp = stk;
 	while (tmp->next)
@@ -57,7 +57,7 @@ void	add_front(t_stk **top, t_stk *new)
 
 t_stk	*bottom(t_stk *top)
 {
-	t_stk *ret;
+	t_stk	*ret;
 
 	ret = top;
 	while (ret->next)

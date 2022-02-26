@@ -4,8 +4,8 @@ void	check_sim(char **split)
 {
 	int		i;
 	int		j;
-	int k1;
-	int k2;
+	int		k1;
+	int		k2;
 
 	i = -1;
 	while (split[++i])

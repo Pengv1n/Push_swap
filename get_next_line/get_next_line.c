@@ -46,8 +46,8 @@ char	*ret_line(char **text, char **buff)
 	{
 		piece_or_null(text, &line);
 	}
-    free(*text);
-    line[ft_strlen(line) - 1] = '\0';
+	free(*text);
+	line[ft_strlen(line) - 1] = '\0';
 	return (line);
 }
 

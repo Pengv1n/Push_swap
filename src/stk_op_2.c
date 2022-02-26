@@ -2,7 +2,7 @@
 
 int	min_stk(t_stk *top)
 {
-	int	ret;
+	int		ret;
 	t_stk	*tmp;
 
 	tmp = top;
@@ -18,8 +18,8 @@ int	min_stk(t_stk *top)
 
 int	index_stk(t_stk *top, int n)
 {
-	int i;
-	t_stk *tmp;
+	int		i;
+	t_stk	*tmp;
 
 	i = 1;
 	tmp = top;
@@ -60,7 +60,7 @@ t_stk	*sort_stk(t_stk *top)
 	t_stk	*tmp;
 	t_stk	*tmp2;
 	t_stk	*min;
-	int	i;
+	int		i;
 
 	tmp = top;
 	while (tmp->next)
@@ -84,8 +84,8 @@ t_stk	*sort_stk(t_stk *top)
 int	select_num(t_stk *a)
 {
 	t_stk	*tmp;
-	int len;
-	int m;
+	int		len;
+	int		m;
 
 	m = 0;
 	len = size_stk(a);

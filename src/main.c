@@ -2,7 +2,7 @@
 
 void	fill_stk(t_ps *ps, char **s, t_stk *new, int argc)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	while (s[++i])
@@ -21,8 +21,8 @@ void	fill_stk(t_ps *ps, char **s, t_stk *new, int argc)
 		add_back(&ps->a, new);
 		new = NULL;
 	}
-    if (argc == 2 || ps->fd != 1)
-        free_split(ps->split);
+	if (argc == 2 || ps->fd != 1)
+		free_split(ps->split);
 }
 
 t_ps	*init_stk(t_ps *ps)
@@ -34,29 +34,29 @@ t_ps	*init_stk(t_ps *ps)
 	ps->b = NULL;
 	ps->split = NULL;
 	ps->len = 0;
-    ps->fd = 1;
+	ps->fd = 1;
 	return (ps);
 }
 
-void    choice_input(t_ps *ps, int argc, char **argv)
+void	choice_input(t_ps *ps, int argc, char **argv)
 {
-    char    *line;
+	char	*line;
 
-    if (!ft_strncmp(argv[1], "-f", ft_strlen(argv[1])))
-    {
-        ps->fd = open(argv[2], O_RDONLY);
-        line = get_next_line(ps->fd);
-        ps->split = ft_split(line, ' ');
-        free(line);
-        close(ps->fd);
-    }
-    else
-    {
-        if (argc == 2)
-            ps->split = ft_split(argv[1], ' ');
-        else
-            ps->split = &argv[1];
-    }
+	if (!ft_strncmp(argv[1], "-f", ft_strlen(argv[1])))
+	{
+		ps->fd = open(argv[2], O_RDONLY);
+		line = get_next_line(ps->fd);
+		ps->split = ft_split(line, ' ');
+		free(line);
+		close(ps->fd);
+	}
+	else
+	{
+		if (argc == 2)
+			ps->split = ft_split(argv[1], ' ');
+		else
+			ps->split = &argv[1];
+	}
 }
 
 void	push_swap(t_ps *ps, int argc, char **argv)
@@ -64,7 +64,7 @@ void	push_swap(t_ps *ps, int argc, char **argv)
 	t_stk	*new;
 
 	new = NULL;
-    choice_input(ps, argc, argv);
+	choice_input(ps, argc, argv);
 	check_numb(ps->split);
 	check_sim(ps->split);
 	fill_stk(ps, ps->split, new, argc);
@@ -77,7 +77,7 @@ void	push_swap(t_ps *ps, int argc, char **argv)
 		sort_big(&(ps->a), &(ps->b), ps);
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_ps	*ps;
 

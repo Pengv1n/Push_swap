@@ -2,7 +2,7 @@
 
 int	node_stk(t_stk **top, int idx)
 {
-	int i;
+	int		i;
 	t_stk	*tmp;
 
 	i = 0;
@@ -38,8 +38,8 @@ void	lift_node_a(t_stk **a, t_stk **b, t_ps *ps, int m)
 
 int	max_stk(t_stk *top)
 {
-	t_stk *tmp;
-	int	max;
+	t_stk	*tmp;
+	int		max;
 
 	if (top)
 	{
@@ -66,4 +66,3 @@ int	check_eq_val(t_stk *top, int val)
 	}
 	return (0);
 }
-
