@@ -1,3 +1,0 @@
-/home/aregenia/Projects/Push_swap/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/aregenia/Projects/Push_swap/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/aregenia/Projects/Push_swap/cmake-build-debug/CMakeFiles/Push_swap.dir
