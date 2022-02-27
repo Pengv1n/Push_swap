@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-void	case_78(t_stk **a, t_stk **b, int code, t_ps *ps)
+void	case_78(t_stk **a, t_stk **b, int code)
 {
 	if (code == 7 && (*b) && (*b)->next)
 	{
@@ -14,7 +14,7 @@ void	case_78(t_stk **a, t_stk **b, int code, t_ps *ps)
 	}
 }
 
-void	case_456(t_stk **a, t_stk **b, int code, t_ps *ps)
+void	case_456(t_stk **a, t_stk **b, int code)
 {
 	t_stk	*tmp;
 
@@ -38,10 +38,10 @@ void	case_456(t_stk **a, t_stk **b, int code, t_ps *ps)
 		free(tmp);
 	}
 	else
-		case_78(a, b, code, ps);
+		case_78(a, b, code);
 }
 
-void	case_123(t_stk **a, t_stk **b, int code, t_ps *ps)
+void	case_123(t_stk **a, t_stk **b, int code)
 {
 	t_stk	*tmp;
 
@@ -63,5 +63,5 @@ void	case_123(t_stk **a, t_stk **b, int code, t_ps *ps)
 		rr_stack(a);
 	}
 	else
-		case_456(a, b, code, ps);
+		case_456(a, b, code);
 }

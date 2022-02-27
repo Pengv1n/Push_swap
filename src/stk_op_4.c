@@ -15,10 +15,10 @@ int	index_max(t_stk *a, int m)
 	return (-1);
 }
 
-void	lift_node_b(t_stk **a, t_stk **b, t_ps *ps, int max)
+void	lift_node_b(t_stk **a, t_stk **b, int max)
 {
 	if (ft_round(size_stk(*b) / 2) > index_max(*b, max) && *b)
-		case_123(a, b, 5, ps);
+		case_123(a, b, 5);
 	else if (*b)
-		case_123(a, b, 6, ps);
+		case_123(a, b, 6);
 }

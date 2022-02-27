@@ -65,11 +65,15 @@ void	push_swap(t_ps *ps, int argc, char **argv)
 
 	new = NULL;
 	choice_input(ps, argc, argv);
-	check_numb(ps->split);
-	check_sim(ps->split);
+	check_numb(ps->split, ps);
+	check_sim(ps->split, ps);
 	fill_stk(ps, ps->split, new, argc);
 	if (check_sort_stk(ps->a))
+	{
+		free_stk(&ps->a);
+		free(ps);
 		exit(EXIT_SUCCESS);
+	}
 	ps->len = size_stk(ps->a);
 	if (ps->len <= 10)
 		sort_10(&(ps->a), &(ps->b), ps);

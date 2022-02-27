@@ -28,12 +28,12 @@ int	check_low_val(t_stk *top, int val)
 	return (0);
 }
 
-void	lift_node_a(t_stk **a, t_stk **b, t_ps *ps, int m)
+void	lift_node_a(t_stk **a, t_stk **b, int m)
 {
 	if (size_stk(*a) / 2 > index_stk(*a, m))
-		case_123(a, b, 2, ps);
+		case_123(a, b, 2);
 	else
-		case_123(a, b, 3, ps);
+		case_123(a, b, 3);
 }
 
 int	max_stk(t_stk *top)

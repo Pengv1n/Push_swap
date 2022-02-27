@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-void	check_sim(char **split)
+void	check_sim(char **split, t_ps *ps)
 {
 	int		i;
 	int		j;
@@ -16,12 +16,15 @@ void	check_sim(char **split)
 			k1 = ft_atoi(split[i]);
 			k2 = ft_atoi(split[j]);
 			if (k1 == k2)
+			{
+				free(ps);
 				ft_error("Error: similar values");
+			}
 		}
 	}
 }
 
-void	check_numb(char	**split)
+void	check_numb(char	**split, t_ps *ps)
 {
 	int	i;
 	int	j;
@@ -36,7 +39,10 @@ void	check_numb(char	**split)
 				|| split[i][j] == '+') && ft_isdigit(split[i][j + 1]))
 				continue ;
 			else if (!ft_isdigit(split[i][j]))
+			{
+				free(ps);
 				ft_error("Error: values incorrect");
+			}
 		}
 	}
 }
